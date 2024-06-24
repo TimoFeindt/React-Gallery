@@ -9,8 +9,7 @@ export default function RecievedImageBox({fetchValues, forwardSelectedImage}) {
 
     
     return(
-        <div className="fetched__image">
-            Ich bin die Box in der die Images vom fetch landen. 
+        <div className="fetch__box">
             {fetchValues.map(image => {
                 return ( 
                     <RecievedImage key={image.id} image={image} selectedImage={handleSelectedImage}/>

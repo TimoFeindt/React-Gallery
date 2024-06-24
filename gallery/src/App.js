@@ -7,7 +7,7 @@ import './css/main.css'
 export default function App() {
 
   const [fetchValues, setFetchValues] = useState([])
-  const [arrayOfImageObject, setArrayOfImageObject] = useState([])
+  const [arrayOfImageObjects, setArrayOfImageObject] = useState([])
 
   const handleFetchValue = (data) => {
     setFetchValues(data)
@@ -15,19 +15,25 @@ export default function App() {
 
   const handleGrandchildImageClick = (image) => {
     const updateImageArray = [
-      ...arrayOfImageObject,
+      ...arrayOfImageObjects,
       image
     ]
     setArrayOfImageObject(updateImageArray)
   }
 
+  const handleDeleteItem = (data) => {
+    // find image object with id and remove it from the arrayOfImageObjects
+    console.log(data)
+    
+  }
+
   return (
     <div className="gallery">
-      <h1>Gallery</h1>
-      Create a list with images and a subheadline.
+      <h1 className="gallery__headline">Gallery</h1>
+      <span className="gallery__subHeadline">Create a list with images and a subheadline.</span>  
       <SearchInput handleFetchValue={handleFetchValue} />
       <RecievedImageBox fetchValues={fetchValues} forwardSelectedImage={handleGrandchildImageClick}/>
-      <GalleryBox imageList={arrayOfImageObject}/>
+      <GalleryBox imageList={arrayOfImageObjects} deleteItem={handleDeleteItem}/>
     </div>
   );
 }

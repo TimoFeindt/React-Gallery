@@ -31,7 +31,7 @@ export default function SearchInput({handleFetchValue}) {
 
     const fetchingImage = async (query) => { 
         
-        const response = await fetch(`https://api.unsplash.com/search/photos/?query=${query}&per_page=2&client_id=${ACCESS_KEY}`); // unsplash api - 5 resutls per request and client_id
+        const response = await fetch(`https://api.unsplash.com/search/photos/?query=${query}&per_page=5&client_id=${ACCESS_KEY}`); // unsplash api - 5 resutls per request and client_id
         const data = await response.json();
         const imageResults = data.results
         
@@ -44,12 +44,7 @@ export default function SearchInput({handleFetchValue}) {
     }, [handleFetchValue, fetchedImageList])
 
     return(
-        <div>
-            Ich bin der Input Component
-            {fetchedImageList.map((image, index) => {
-                return <div key={index}>{image.alt_description}</div>
-            })}
-            
+        <div className="search">            
             <label htmlFor="searchInput" className="search__label">Search Input</label>
             <input name="searchInput" placeholder="Suche nach Bildern" type="text" onChange={handleInputChange} className="search__input"/>
             <button onClick={handleSearchSubmit} className="search__button">Search</button>

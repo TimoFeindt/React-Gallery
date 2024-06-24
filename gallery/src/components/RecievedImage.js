@@ -9,8 +9,8 @@ export default function RecievedImage({image, selectedImage}) {
 
     return(
         <div onClick={handleImageclick} className="fetch__card">
+            <img src={image.urls.thumb} alt={image.alt_description} className="fetch__image"/>
             <h3>Ich bin eine Card</h3>
-            <img src={image.urls.small} alt={image.alt_description} className="fetch__image"/>
         </div>
     )
 }

@@ -1,13 +1,17 @@
 import GalleryImage from "./GalleryImage";
 
-export default function GalleryBox({imageList}) {
+export default function GalleryBox({imageList, deleteItem}) {
+
+    const handleDeleteItem = (item) => {
+        deleteItem(item)
+    }
+
+    // merge GalleryImage into GalleryBoy to decrease component nesting
 
     return(
         <div className="gallery__area">
-            Ich bin die DisplayBox, in mir werden alle Bilder angezeigt
-
             {imageList.map(image => {
-                return (<GalleryImage key={image.id} image={image}/>)
+                return (<GalleryImage key={image.id} image={image} removeItem={handleDeleteItem}/>)
                 })
             }
         </div>
