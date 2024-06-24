@@ -1,14 +1,16 @@
-export default function RecievedImage({image}) {
+export default function RecievedImage({image, selectedImage}) {
 
-    //styling hinzufügen
-    //img tag und headline hinzufügen
+   //WCAG hinzufügen
+
+    //send specific img back to parent
+    const handleImageclick = () => {
+        selectedImage(image)
+    }
 
     return(
-        <div>
+        <div onClick={handleImageclick} className="fetch__card">
             <h3>Ich bin eine Card</h3>
-            <img src={image.urls.small} alt={image.alt_description} />
-            <h5>Title: {image.alt_description} </h5>
-            <p>{image.description}</p>
+            <img src={image.urls.small} alt={image.alt_description} className="fetch__image"/>
         </div>
     )
 }

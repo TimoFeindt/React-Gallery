@@ -1,21 +1,19 @@
 import RecievedImage from "./RecievedImage"
 
-export default function RecievedImageBox({fetchValues}) {
-    console.log('RecievedImageBox: ')
-    console.log(fetchValues)
-    // map erstellen um alle 5 images anzuzeigen.
+export default function RecievedImageBox({fetchValues, forwardSelectedImage}) {
+    
+    // handle clickedImage
+    const handleSelectedImage = (image) => {
+        forwardSelectedImage(image)
+    }
 
-    /* const newImageList = images.map(image => {
-        return ( console.log(image)
-        const updateImageList = []
-        )
-    }) */
+    
     return(
-        <div>
+        <div className="fetched__image">
             Ich bin die Box in der die Images vom fetch landen. 
             {fetchValues.map(image => {
                 return ( 
-                    <RecievedImage key={image.id} image={image}/>
+                    <RecievedImage key={image.id} image={image} selectedImage={handleSelectedImage}/>
                 )
             })}
             

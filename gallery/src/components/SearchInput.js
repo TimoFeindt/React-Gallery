@@ -14,6 +14,8 @@ export default function SearchInput({handleFetchValue}) {
         
     }
 
+
+    //TODO: controlled Input erstellen vallue={inputValue} noch mehr reinlesen
     const handleSearchSubmit = () => {
         if(inputValue === '') {
             return
@@ -29,7 +31,7 @@ export default function SearchInput({handleFetchValue}) {
 
     const fetchingImage = async (query) => { 
         
-        const response = await fetch(`https://api.unsplash.com/search/photos/?query=${query}&per_page=1&client_id=${ACCESS_KEY}`); // unsplash api - 5 resutls per request and client_id
+        const response = await fetch(`https://api.unsplash.com/search/photos/?query=${query}&per_page=2&client_id=${ACCESS_KEY}`); // unsplash api - 5 resutls per request and client_id
         const data = await response.json();
         const imageResults = data.results
         
@@ -48,9 +50,9 @@ export default function SearchInput({handleFetchValue}) {
                 return <div key={index}>{image.alt_description}</div>
             })}
             
-            <label htmlFor="">Search Input</label>
-            <input placeholder="Suche nach Bildern" type="text" onChange={handleInputChange} />
-            <button onClick={handleSearchSubmit}>Search</button>
+            <label htmlFor="searchInput" className="search__label">Search Input</label>
+            <input name="searchInput" placeholder="Suche nach Bildern" type="text" onChange={handleInputChange} className="search__input"/>
+            <button onClick={handleSearchSubmit} className="search__button">Search</button>
         </div>
     )
 }
