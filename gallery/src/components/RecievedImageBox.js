@@ -6,7 +6,6 @@ export default function RecievedImageBox({fetchValues, forwardSelectedImage}) {
     const handleSelectedImage = (image) => {
         forwardSelectedImage(image)
     }
-
     
     return(
         <div className="fetch__box">
