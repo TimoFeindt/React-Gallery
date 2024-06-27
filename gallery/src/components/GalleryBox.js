@@ -6,7 +6,7 @@ export default function GalleryBox({imageList, deleteItem}) {
         deleteItem(item)
     }
 
-    // merge GalleryImage into GalleryBoy to decrease component nesting
+    // TODO: GalleryImage in GalleryBoy verwenden um weniger component nesting zu verwenden. usecontext für statemanagement evtl oder redux
 
     return(
         <div className="gallery__area">

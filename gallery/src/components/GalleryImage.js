@@ -1,4 +1,5 @@
 import { useState } from "react"
+import CrossIcon from "../icon/CrossIcon"
 
 export default function GalleryImage({image, removeItem}) {
 
@@ -20,14 +21,23 @@ export default function GalleryImage({image, removeItem}) {
         <div className={`gallery__card ${isSpinning ? 'spinner' : '' }`} onClick={addSpinning}>
             <div className="gallery__cardFront">
                 <img src={image.urls.small} alt={image.alt_description} className="gallery__image"/>
-                <span className="gallery__delete" onClick={handleDelete}></span>
-                <span className="gallery__titleFader"></span>
-                <h5 className="gallery__title">Title: Muss ich noch hinzufügen</h5>
+                <span onClick={handleDelete}>
+                    <CrossIcon />
+                </span>
+                { (image.title !== '') 
+                    ?   <>
+                            <span className="gallery__titleFader"></span>
+                            <h5 className="gallery__title">Title: {image.title} </h5>
+                        </> 
+                    : ''
+                }
             </div>
             
             
             <div className="gallery__cardBack">
-                <span className="gallery__delete" onClick={handleDelete}></span>
+                <span onClick={handleDelete} >
+                    <CrossIcon />
+                </span>
                 <p className="gallery__description">Description: {image.description}</p>  
                 <span className="gallery__author">Author: {image.user.first_name} {image.user.last_name}</span>
             </div>

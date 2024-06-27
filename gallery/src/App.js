@@ -9,12 +9,11 @@ export default function App() {
   const [fetchValues, setFetchValues] = useState([])
   const [arrayOfImageObjects, setArrayOfImageObject] = useState([])
 
-
   const handleFetchValue = (data) => {
     setFetchValues(data)
   }
 
-  // add image and avoid doublicates
+  // image hinzufügen und duplicate vermeiden
   const handleAddImage = (image) => {
     const doubleImage = arrayOfImageObjects.find(({id}) => {
       return image.id === id
@@ -30,15 +29,12 @@ export default function App() {
   }
 
   const handleDeleteItem = (data) => {
-    // remove image with specific ID
-
+    // ausgewähltes image aus dem Array werfen
     const removeImage = arrayOfImageObjects.filter(({id}) => {
       return  id !== data.id
     })
     setArrayOfImageObject(removeImage)
   }
-
-  //TODO: delete all button
 
   return (
     <div className="gallery">
@@ -47,6 +43,7 @@ export default function App() {
       <SearchInput handleFetchValue={handleFetchValue} />
       <RecievedImageBox fetchValues={fetchValues} forwardSelectedImage={handleAddImage}/>
       <GalleryBox imageList={arrayOfImageObjects} deleteItem={handleDeleteItem}/>
+      <button onClick={() => setArrayOfImageObject([])}>Remove all!</button>
     </div>
   );
 }

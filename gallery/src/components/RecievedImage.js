@@ -1,16 +1,33 @@
+import { useState } from "react"
+
 export default function RecievedImage({image, selectedImage}) {
 
-   //WCAG hinzufügen
+    const [newTitle, setNewTitle] = useState('')
 
-    //send specific img back to parent
-    const handleImageclick = () => {
-        selectedImage(image)
+    //WCAG hinzufügen
+    
+    // bestimmtes img an parent senden
+    const handleImageclick = () => {        
+        const newImage =  {
+            ...image,
+            title: newTitle
+        }
+        selectedImage(newImage)
+    }
+    
+    // induviduellen title hinzufügen
+    const handleNewTitle = (e) => {
+        const title = e.target.value.trim();
+        setNewTitle(title)
     }
 
+
+    // TODO: Controlled input feld anlegen - reset input 
+
     return(
-        <div onClick={handleImageclick} className="fetch__card">
-            <img src={image.urls.thumb} alt={image.alt_description} className="fetch__image"/>
-            <h3>Ich bin eine Card</h3>
+        <div className="fetch__card">
+            <img src={image.urls.thumb} alt={image.alt_description} className="fetch__image" onClick={handleImageclick}/>
+            <input className="fetch__input" placeholder="Add your own title" onChange={handleNewTitle}/>
         </div>
     )
 }
