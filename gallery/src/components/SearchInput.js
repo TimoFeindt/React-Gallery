@@ -9,8 +9,6 @@ export default function SearchInput({handleFetchValue}) {
     
     const inputEl = useRef()
 
-    console.log(handleFetchValue)
-
     // Input von leerzeichen befreien
     const handleInputChange = (e) => {
         const trimmedValue = e.target.value.trim();
