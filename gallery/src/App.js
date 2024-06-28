@@ -7,7 +7,7 @@ import './css/main.css'
 export default function App() {
 
   const [fetchValues, setFetchValues] = useState([])
-  const [arrayOfImageObjects, setArrayOfImageObject] = useState([])
+  const [arrayOfImages, setArrayOfImages] = useState([])
 
   const handleFetchValue = (data) => {
     setFetchValues(data)
@@ -15,25 +15,25 @@ export default function App() {
 
   // image hinzufügen und duplicate vermeiden
   const handleAddImage = (image) => {
-    const doubleImage = arrayOfImageObjects.find(({id}) => {
+    const doubleImage = arrayOfImages.find(({id}) => {
       return image.id === id
     })
     
     if(!doubleImage) {
       const updateImageArray = [
-        ...arrayOfImageObjects,
+        ...arrayOfImages,
         image
       ]
-      setArrayOfImageObject(updateImageArray)
+      setArrayOfImages(updateImageArray)
     }
   }
 
   const handleDeleteItem = (data) => {
     // ausgewähltes image aus dem Array werfen
-    const removeImage = arrayOfImageObjects.filter(({id}) => {
+    const removeImage = arrayOfImages.filter(({id}) => {
       return  id !== data.id
     })
-    setArrayOfImageObject(removeImage)
+    setArrayOfImages(removeImage)
   }
 
   return (
@@ -42,8 +42,8 @@ export default function App() {
       <span className="gallery__subHeadline">Create a list with images and a subheadline.</span>  
       <SearchInput handleFetchValue={handleFetchValue} />
       <RecievedImageBox fetchValues={fetchValues} forwardSelectedImage={handleAddImage}/>
-      <GalleryBox imageList={arrayOfImageObjects} deleteItem={handleDeleteItem}/>
-      <button onClick={() => setArrayOfImageObject([])}>Remove all!</button>
+      <GalleryBox imageList={arrayOfImages} deleteItem={handleDeleteItem}/>
+      <button onClick={() => setArrayOfImages([])}>Remove all!</button>
     </div>
   );
 }
